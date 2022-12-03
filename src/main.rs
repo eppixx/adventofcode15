@@ -7,7 +7,7 @@ mod day6;
 
 fn main() {
     println!("advent of code 2015");
-    println!("https://adventofcode.com/");
+    println!("https://adventofcode.com/2015");
     day1::main();
     day2::main();
     day3::main();
