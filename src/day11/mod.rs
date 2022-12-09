@@ -3,7 +3,7 @@ pub fn main() {
 
     loop {
         input = increment(&input);
-        if let true = validate(&input) {
+        if validate(&input) {
             break;
         }
     }
@@ -12,7 +12,7 @@ pub fn main() {
     let mut next_input = input.clone();
     loop {
         next_input = increment(&next_input);
-        if let true = validate(&next_input) {
+        if validate(&next_input) {
             break;
         }
     }
@@ -51,12 +51,14 @@ pub fn increment(input: &str) -> String {
 
 pub fn validate(input: &str) -> bool {
     let ascend_3_chars = |input: &str| -> bool {
+        // needs a sequence of 3 chars that ascend like abc or xyz
         input
             .as_bytes()
             .windows(3)
             .any(|s| s[0] + 2 == s[2] && s[1] + 1 == s[2])
     };
     let only_valid_chars = |input: &str| -> bool {
+        //i, o and l are not valid characters
         input
             .find(|s| !(s == 'i' || s == 'o' || s == 'l'))
             .is_some()
@@ -71,6 +73,7 @@ pub fn validate(input: &str) -> bool {
             Some((i, _)) => input
                 .as_bytes()
                 .windows(2)
+                // skip after the first pair
                 .skip(i + 2)
                 .any(|s| s[0] == s[1]),
             _ => false,
