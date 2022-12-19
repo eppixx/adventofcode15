@@ -37,10 +37,10 @@ pub fn main() {
     println!("\nday 9");
     println!(
         "shortest distance between locations {:?}",
-        possible_routes.iter().map(|(_, cost)| cost).min()
+        possible_routes.values().min().unwrap()
     );
     println!(
         "longest distance between locations {:?}",
-        possible_routes.iter().map(|(_, cost)| cost).max()
+        possible_routes.values().max().unwrap()
     )
 }

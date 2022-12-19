@@ -65,7 +65,7 @@ pub fn main() {
                 match inst {
                     Lights::Toggle => *light += 2,
                     Lights::On => *light += 1,
-                    Lights::Off => *light -= if *light == 0 { 0 } else { 1 },
+                    Lights::Off => *light -= i32::from(*light != 0),
                 }
             }
         }
