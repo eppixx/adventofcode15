@@ -22,7 +22,6 @@ fn iterate(input: &serde_json::Value) -> i64 {
 }
 
 fn iterate_for_red(input: &serde_json::Value) -> i64 {
-    println!("{:?}", input);
     use serde_json::Value;
     match input {
         Value::Number(num) => num.as_i64().unwrap(),
