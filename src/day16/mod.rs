@@ -19,7 +19,6 @@ fn parse(input: &str) -> nom::IResult<&str, Vec<AuntFeatures>> {
     use nom::AsChar;
 
     fn features(input: &str) -> nom::IResult<&str, Vec<(&str, i32)>> {
-        println!("features {}", input);
         let (rest, feature) = separated_list1(
             tag(", "),
             separated_pair(
@@ -28,7 +27,6 @@ fn parse(input: &str) -> nom::IResult<&str, Vec<AuntFeatures>> {
                 nom::character::complete::i32,
             ),
         )(input)?;
-        println!("{:?}: {:?}", rest, feature);
         Ok((rest, feature))
     }
 
@@ -39,9 +37,7 @@ fn parse(input: &str) -> nom::IResult<&str, Vec<AuntFeatures>> {
     }
 
     fn line(input: &str) -> nom::IResult<&str, AuntFeatures> {
-        println!("line {}", input);
         let (rest, features) = separated_pair(sue, tag(": "), features)(input)?;
-        println!("line {:?} : {:?}", rest, features);
 
         let mut aunt = AuntFeatures::default();
         for feature in features.1 {
